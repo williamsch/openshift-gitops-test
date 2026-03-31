@@ -1,13 +1,14 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  name: app-spring-app-ive
+  namespace: gitops-ive
   labels:
     app: app-spring-app-ive
-  name: app-spring-app-ive
 spec:
-  port:
-    targetPort: 8080-tcp
   to:
     kind: Service
     name: app-spring-app-ive
     weight: 100
+  port:
+    targetPort: 8080-tcp
