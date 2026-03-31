@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
+  name: app-spring-app-ive
+  namespace: gitops-ive
   labels:
     app: app-spring-app-ive
     app.kubernetes.io/component: web
@@ -9,7 +10,6 @@ metadata:
     app.kubernetes.io/name: app-spring-app-ive
     app.kubernetes.io/part-of: app-spring-app-ive
     app.openshift.io/runtime: java
-  name: app-spring-app-ive
 spec:
   replicas: 1
   selector:
@@ -21,33 +21,33 @@ spec:
         app: app-spring-app-ive
     spec:
       containers:
-      - name: app-spring-app-ive
-        imagePullPolicy: Always
-        image: quay.io/siamaksade/spring-petclinic:latest
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 45
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        - containerPort: 8443
-          protocol: TCP
-        - containerPort: 8778
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 45
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
+        - name: app-spring-app-ive
+          image: quay.io/siamaksade/spring-petclinic:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+            - containerPort: 8778
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 45
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 45
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
