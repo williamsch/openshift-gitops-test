@@ -13,7 +13,7 @@ spec:
       recurse: true
     path: app
     repoURL: https://github.com/williamsch/openshift-gitops-test.git
-    targetRevision: main
+    targetRevision: 1.1
   syncPolicy:
     automated:
       prune: true
