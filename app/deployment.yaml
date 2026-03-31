@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app-spring-app-ive
-          image: quay.io/siamaksade/spring-petclinic:latest
+          image: quay.io/siamaksade/spring-petclinic:main
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
