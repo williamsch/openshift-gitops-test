@@ -13,4 +13,4 @@ spec:
       recurse: true
     path: cluster
     repoURL: https://github.com/williamsch/openshift-gitops-test.git
-    targetRevision: master
+    targetRevision: 1.1
