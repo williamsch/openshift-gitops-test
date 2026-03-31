@@ -4,17 +4,19 @@ metadata:
   name: app-spring-app-ive
   namespace: openshift-gitops
 spec:
-  destination:
-    namespace: gitops-ive
-    server: https://kubernetes.default.svc
   project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitops-ive
   source:
-    directory:
-      recurse: true
-    path: app
     repoURL: https://github.com/williamsch/openshift-gitops-test.git
     targetRevision: master
+    path: app
+    directory:
+      recurse: true
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
